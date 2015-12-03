@@ -14,6 +14,8 @@ switch($uc)
 {
 	case 'accueil':
 		{include("vues/v_accueil.php");break;}
+	case 'domaine' :
+		{include("controleurs/c_domaine.php");break;}
 	case 'Formation' :
 		{include("controleurs/c_formation.php");break;}
 	case 'inscription' :

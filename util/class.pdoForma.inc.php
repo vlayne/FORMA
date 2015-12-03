@@ -165,7 +165,7 @@ class PdoForma
 	}*/
 	public static function recuperationID($NomID)
 	{
-		$requeteezae = 'SELECT ID_UTIL from stagiaire where NOM_UTIL = "'.$NomID.'"';
+		$requete = 'SELECT ID_UTIL from stagiaire where NOM_UTIL = "'.$NomID.'"';
 		$res = PdoForma::$monPdo->query($requete);
 		$ID = $res->fetch();
 		
@@ -186,14 +186,23 @@ class PdoForma
 
 		return $statut;
 	}
-	public function getLesFormations()
+	public function getLesFormations($idDom)
 	{
-		$req = "select * from formation";
+		
+		$req = "select f.NOM_FORM, f.COUT_FORM, f.NBPLACE_FORM, f.LIEU_FORM, s.JOUR_SESSION, s.HEUREDEBUT_SESSIOn, s.HEUREFIN_SESSION from formation as f, session as s
+		where s.NUM_FORM = f.NUM_FORM and f.ID_DOMAINE = $idDom ";			
 		$res = PdoForma::$monPdo->query($req);
 		$lesLignes = $res->fetchAll();		
 		return $lesLignes;
-
 		
+	}
+
+	public function getLesDomaines()
+	{
+		$req = "select * FROM domaine";
+		$res = PdoForma::$monPdo->query($req);
+		$lesLignes = $res->fetchAll();
+		return $lesLignes;
 	}
 	public static function grade($utilisateur)
 	{
