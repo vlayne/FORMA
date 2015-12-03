@@ -4,6 +4,12 @@
 
 <body>
 <form method='post' action="index.php?uc=inscription">
+<p>Identifiant</p>
+<input type='text' name='ID'/>
+<p>Mot de pass</p>
+<input type='text' name='mdp'/>
+<p>Confirmation Mot de pass</p>
+<input type='text' name='mdpV'/>
 <p>Nom Association</p>
 <input type='text' name='nomA'/>
 <p>Nom</p>
@@ -24,9 +30,11 @@
 <input type='text' name='fonction'/>
 
 <label> Payement </label>
+
 <p> 
 Si vous cochez "ulterieur" , vous devrez envoyer un chèque auprès 
-d'Uniformation afin de valider votre inscription.</p>
+d'Uniformation afin de valider votre inscription.
+</p>
 
 immediat <br/>
 <input type='radio' name='payement' value='oui' />
