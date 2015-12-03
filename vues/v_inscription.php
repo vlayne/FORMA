@@ -28,6 +28,8 @@
 <input type='text' name='telephone'/>
 <p>Fonction</p>
 <input type='text' name='fonction'/>
+<p>Statut</p>
+<input type='text' name='statut'/>
 
 <label> Payement </label>
 
