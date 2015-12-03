@@ -143,7 +143,7 @@ class PdoForma
 		var_dump($_SESSION['id']);
 		$inscrit = false ;
 		$RequeteInscrit= 'UPDATE stagiaire SET	PRENOM="'.$prenom.'",NOM="'.$nom.'",FONCTION="'.$fonction.'",DateN="'.$date.'",email="'.$email.'",Telephone='.$telephone.'
-		WHERE NOM_UTIL="'.$_SESSION['id'].'"';
+		WHERE login="'.$_SESSION['id'].'"';
 		$connexion = PdoForma::$monPdo->exec($RequeteInscrit);
 		if($RequeteInscrit)
 		{
@@ -165,7 +165,7 @@ class PdoForma
 	}*/
 	public static function recuperationID($NomID)
 	{
-		$requete = 'SELECT ID_UTIL from stagiaire where NOM_UTIL = "'.$NomID.'"';
+		$requete = 'SELECT ID_UTIL from stagiaire where login = "'.$NomID.'"';
 		$res = PdoForma::$monPdo->query($requete);
 		$ID = $res->fetch();
 		
@@ -175,7 +175,7 @@ class PdoForma
 	{	
 		$statut = false;
 		
-		$requeteCo = 'SELECT * from stagiaire where nom_util="'.$utilisateur.'" AND mdp="'.$motdepass.'"';
+		$requeteCo = 'SELECT * from stagiaire where login="'.$utilisateur.'" AND mdp="'.$motdepass.'"';
 		$connexion = PdoForma::$monPdo->query($requeteCo);
 		$res = $connexion->fetch();
 		 
@@ -206,7 +206,7 @@ class PdoForma
 	}
 	public static function grade($utilisateur)
 	{
-		$requeteGrade = 'SELECT grade from stagiaire where nom_util="'.$utilisateur.'"';
+		$requeteGrade = 'SELECT grade from stagiaire where login="'.$utilisateur.'"';
 		$connexion = PdoForma::$monPdo->query($requeteGrade);
 		$grade = $connexion->fetch();
 		

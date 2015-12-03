@@ -44,29 +44,5 @@ include("Vues/v_connexion.php");
 		}
 	}
 }
-/*
-	public static function connexion($utilisateur,$motdepass)
-	{	
-		$statut = false;
-		
-		$requeteCo = 'SELECT * from stagiaire where nom_util="'.$utilisateur.'" AND mdp="'.$motdepass.'"';
-		$connexion = PdoForma::$monPdo->query($requeteCo);
-		$res = $connexion->fetch();
-		 
-		if($res!="")
-		{
-			$statut = true;	
-		}
 
-		return $statut;
-	}
-	public static function grade($utilisateur)
-	{
-		$requeteGrade = 'SELECT grade from stagiaire where nom_util="'.$utilisateur.'"';
-		$connexion = PdoForma::$monPdo->query($requeteGrade);
-		$grade = $connexion->fetch();
-		
-		return $grade;
-	}
-*/
 ?>
