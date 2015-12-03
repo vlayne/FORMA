@@ -23,7 +23,7 @@ switch($uc)
 	case 'administrer' :
 	    { include("controleurs/c_administrer.php");break;  }
 	case 'deconnecter' :
-		{ include("controleurs/c_deco.php");brea;}
+		{ include("controleurs/c_deco.php");break;}
 }
 // include("vues/v_pied.php") ;
 ?>
