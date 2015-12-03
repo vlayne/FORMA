@@ -2,6 +2,7 @@
 include("vues/v_inscription.php");
 if(isset($_POST['nom']))
 {
+	// Occurences Table Formation
 	$id = $_POST['ID'];
 	$nomAssoc = $_POST['nomA'];
 	$mdp = $_POST['mdp'];
@@ -13,15 +14,16 @@ if(isset($_POST['nom']))
 	$adresse=$_POST['email'];
 	$telephone = $_POST['telephone'];
 	$fonction =$_POST['fonction'];
-	var_dump($pdo->recuperationID($_SESSION['id']));
+
+	// var_dump($pdo->recuperationID($_SESSION['id']));
 	$stagiaire = $pdo->inscription($id,$nomAssoc,$mdp,$numICOM,$nom,$prenom,$email,$date,$adresse,$telephone,$fonction);
 	if(!$stagiaire)
 	{
-		echo 'erreuuur';
+		echo 'Erreur ! Veuillez remplir tout les champs !';
 	}
 	else
 	{
-		$inscrire = $pdo->InscrireLeStagiaire($pdo->recuperationID($NomID));
+	  	echo 'Vous avez bien été inscrit ! Bienvenue '.$nom.' !';
 	}
 }
 ?>

@@ -138,7 +138,7 @@ class PdoForma
 	*Initialisation de variables booléens et envoi de la requête à la BD.
 	*la variable est renvoyé suite au résultat de la requête
 	 */
-	public static function inscription($nom,$prenom,$email,$date,$adresse,$telephone,$fonction)
+	public static function inscription($id,$nomAssoc,$mdp,$numICOM,$nom,$prenom,$email,$date,$adresse,$telephone,$fonction)
 	{
 		var_dump($_SESSION['id']);
 		$inscrit = false ;
