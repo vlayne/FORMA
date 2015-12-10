@@ -1,0 +1,1 @@
+<form method = 'post' action = 'index.php?uc=GererInscrit'><input type ='submit' value = 'Gérer les inscrits' /></form>
