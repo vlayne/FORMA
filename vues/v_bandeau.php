@@ -13,6 +13,7 @@
 	?>
 	<li><a href="index.php?uc=inscription"> Inscription</a></li>
 	<li><a href="index.php?uc=connexion">Connexion </a></li>
+	<li><a href="index.php?uc=inscription">S'inscrire</a></li>
 	<?php
 	}
 	?>
@@ -20,7 +21,12 @@
 	<?php 
 	if(isset($_SESSION['connecter']))
 	{
+
 	?>	
+
+	?>
+	<li><a href="index.php?uc=inscriptionF"> InscriptionFormation </a></li>
+
 	<li><a href="index.php?uc=deconnecter"> Deconnecter </a></li>
 	
 	<?php

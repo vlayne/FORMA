@@ -21,9 +21,8 @@
 			if(isset($_SESSION['connecter']))
 			{	
 				?>
-				<td><form method ='post' action=index.php?uc=inscrireFormation&formation=<?php echo $formation ?>>
-					<input type='submit' value="s'inscrire" />
-				</form>
+				<td>
+					<input type='submit' value="s'inscrire" href=index.php?uc=inscrireFormation&formation=<?php echo $formation[$i][$j] ?>/>				
 				</td>
 				<?php
 			}

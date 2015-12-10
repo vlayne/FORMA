@@ -138,12 +138,11 @@ class PdoForma
 	*Initialisation de variables booléens et envoi de la requête à la BD.
 	*la variable est renvoyé suite au résultat de la requête
 	 */
-	public static function inscription($nom,$prenom,$email,$date,$adresse,$telephone,$fonction)
+	public static function inscription($login,$nomAssoc,$mdp,$numICOM,$nom,$statut,$prenom,$email,$date,$adresse,$telephone,$fonction)
 	{
 		var_dump($_SESSION['id']);
 		$inscrit = false ;
-		$RequeteInscrit= 'UPDATE stagiaire SET	PRENOM="'.$prenom.'",NOM="'.$nom.'",FONCTION="'.$fonction.'",DateN="'.$date.'",email="'.$email.'",Telephone='.$telephone.'
-		WHERE login="'.$_SESSION['id'].'"';
+		$RequeteInscrit= 'INSERT INTO stagiaire VALUES ('.$numICOM.','.$login.',"'.$prenom.'","'.$statut.'","'.$fonction.'","b","'.$mdp.'","'.$email.'",'.$date.',"'.$adresse.'",'.$telephone.',"'.$nom.'")';
 		$connexion = PdoForma::$monPdo->exec($RequeteInscrit);
 		if($RequeteInscrit)
 		{
