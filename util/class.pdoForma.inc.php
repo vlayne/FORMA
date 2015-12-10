@@ -21,6 +21,7 @@ class PdoForma
       	private static $mdp='' ;	
 		private static $monPdo;
 		private static $monPdoForma = null;
+
 /**
  * Constructeur privé, crée l'instance de PDO qui sera sollicitée
  * pour toutes les méthodes de la classe
@@ -31,7 +32,8 @@ class PdoForma
 			PdoForma::$monPdo->query("SET CHARACTER SET utf8");
 			PdoForma::$monPdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}
-	public function _destruct(){
+	public function _destruct()
+	{
 		PdoForma::$monPdo = null;
 	}
 /**
@@ -48,94 +50,12 @@ class PdoForma
 		}
 		return PdoForma::$monPdoForma;  
 	}
-/**
- * Retourne toutes les catégories sous forme d'un tableau associatif
- *
- * @return le tableau associatif des catégories 
-*/
-	public function getLesCategories()
-	{
-		$req = "select * from categorie";
-		$res = PdoForma::$monPdo->query($req);
-		$lesLignes = $res->fetchAll();
-		return $lesLignes;
-	}
-
-/**
- * Retourne sous forme d'un tableau associatif tous les produits de la
- * catégorie passée en argument
- * 
- * @param $idCategorie 
- * @return un tableau associatif  
-*/
-
-	public function getLesProduitsDeCategorie($idCategorie)
-	{
-	    $req="select * from produit where idCategorie = '$idCategorie'";
-		$res = PdoForma::$monPdo->query($req);
-		$lesLignes = $res->fetchAll();
-		return $lesLignes; 
-	}
-/**
- * Retourne les produits concernés par le tableau des idProduits passés en argument
- *
- * @param $desIdProduit tableau d'idProduits
- * @return un tableau associatif 
-*/
-	public function getLesProduitsDuTableau($desIdProduit)
-	{
-		$nbProduits = count($desIdProduit);
-		$lesProduits=array();
-		if($nbProduits != 0)
-		{
-			foreach($desIdProduit as $unIdProduit)
-			{
-				$req = "select * from produit where id = '$unIdProduit'";
-				$res = PdoForma::$monPdo->query($req);
-				$unProduit = $res->fetch();
-				$lesProduits[] = $unProduit;
-			}
-		}
-		return $lesProduits;
-	}
-/**
- * Création d'une commande 
- *
- * Crée une commande à partir des arguments validés passés en paramètre, l'identifiant est
- * construit à partir du maximum existant ; crée les lignes de commandes dans la table contenir à partir du
- * tableau d'idProduit passé en paramètre
- * @param $nom 
- * @param $rue
- * @param $cp
- * @param $ville
- * @param $mail
- * @param $lesIdProduit
- 
-*/
-	public function creerCommande($nom,$rue,$cp,$ville,$mail, $lesIdProduit )
-	{
-		$req = "select max(id) as maxi from commande";
-		$res = PdoForma::$monPdo->query($req);
-		$laLigne = $res->fetch();
-		$maxi = $laLigne['maxi'] ;
-		$maxi++;
-		$idCommande = $maxi;
-		echo "votre commande num: ".$idCommande. "    a été enregistrée <br>";
-		$date = date('Y/m/d');
-		$req = "insert into commande values ('$idCommande','$date','$nom','$rue','$cp','$ville','$mail')";
-		echo $req."<br>";
-		$res = PdoForma::$monPdo->exec($req);
-		foreach($lesIdProduit as $unIdProduit)
-		{
-			$req = "insert into contenir values ('$idCommande','$unIdProduit')";
-			echo $req."<br>";
-			$res = PdoForma::$monPdo->exec($req);
-		}
-	}
+	
+	
 	public static function inscription($login,$mdp,$numICOM,$nom,$statut,$prenom,$email,$date,$adresse,$telephone,$fonction)
 	{
 		$inscrit = false ;
-		$RequeteInscrit= 'INSERT INTO stagiaire VALUES (default,'.$numICOM.',"'.$login.'","'.$prenom.'","'.$statut.'","'.$fonction.'","b","'.$mdp.'","'.$email.'","'.$date.'","'.$adresse.'",'.$telephone.',"'.$nom.'")';
+		$RequeteInscrit= 'INSERT INTO stagiaire VALUES (DEFAULT,'.$numICOM.',"'.$login.'","'.$prenom.'","'.$statut.'","'.$fonction.'","b","'.$mdp.'","'.$email.'","'.$date.'","'.$adresse.'",'.$telephone.',"'.$nom.'")';
 		$connexion = PdoForma::$monPdo->exec($RequeteInscrit);
 		if($RequeteInscrit)
 		{
@@ -157,21 +77,19 @@ class PdoForma
 		}
 		return $ICOM;
 	}
-	public function RecupNombreDePlace()
-	{
-		
-	}
-	public function RecupNbFormInscrit()
-	{
-		
-	}
+	
+	public static function InscrirePourFormation($IdUtil,$NumForm,$IdDomaine,$idSession)
+	{	
+		$inscritForma = false ;
+		$requete = 'INSERT into inscire VALUES('.$IdUtil.','.$NumForm.','.$IdDomaine.','.$idSession.',0)';
+		$res = PdoForma::$monPdo->exec($requete);
+		if($requete)
+		{
+			$inscritForma=true;
+		}
+		return $inscritForma ;
 
-	//public static function InscrirePourFormation($IdUtil,$NumForm,$IdDomaine,$idSession)
-	//{
-	//	$requete = 'INSERT into inscire VALUES('$IdUtil','$NumForm','$IdDomaine','$idSession',0)';
-	//	$res = PdoForma::$monPdo->exec($requete);
-
-	//}
+	}
 
 	public static function recuperationID($NomID)
 	{
@@ -222,37 +140,6 @@ class PdoForma
 		$grade = $connexion->fetch();
 		
 		return $grade;
-	}
-	public function ModifierUnProduit($idB,$DescriptionA,$PrixA)
-	{
-		$modifier = false;
-		$req = "UPDATE produit SET description = '".$DescriptionA."', prix = '".$PrixA."' WHERE id = '".$idB."'";
-		$res=PdoForma::$monPdo->exec($req);
-		if ($res != null)
-		{
-			$modifier = true;
-		}
-		return $modifier;
-	}
-	public function SupprimerUnProduit($idB)
-	{
-	 $supprimer = false ;
-	 $requete = "DELETE FROM produit where id ='".$idB."'" ;
-	 $resultat = PdoForma::$monPdo->exec($requete);
-	 if ($resultat != null)
-	 $supprimer = true ;
-	 
-	 return $supprimer;
-	}
-	public function AjouterUnProduit($idA,$DescriptionA,$PrixA,$idC)
-	{
-	$ajout = false;
-	$requete = "INSERT INTO produit VALUES ('".$idA."','".$DescriptionA."',".$PrixA.",'images/image.jpg','".$idC."')";
-	$resultat = PdoForma::$monPdo->exec($requete);
-	if($resultat!=null)
-	$ajout = true ;
-	
-	return $ajout ;
 	}
 }
 ?>
