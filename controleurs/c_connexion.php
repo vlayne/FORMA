@@ -34,6 +34,9 @@ include("Vues/v_connexion.php");
 				}
 				
 				$_SESSION['id'] = $utilisateur ;
+				$idUtilisateur = $pdo->recuperationID($utilisateur);
+				$_SESSION['idUtil'] = $idUtilisateur;
+
 				
 				header('Location: index.php?uc=accueil');
 			 }

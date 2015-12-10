@@ -149,39 +149,14 @@ class PdoForma
 			$inscrit=true;
 		}
 		return $inscrit ;
-	}*
-	public static function VerifNumeroICOM($numICOM)
-	{
-		$ICOM = false ;
-		$RequeteICOM= 'SELECT NUM_ICOM from association';
-		$connex = PdoForma::$monPdo->query($RequeteICOM);
-		$ConfICOM = $connex->fetch();
-		foreach ($ConfICOM as $key => $value) 
-		{
-			if($numICOM==$key)
-				$ICOM=true;
-		}
-		return $ICOM;
 	}
-	/*public function RecupNombreDePlace()
-	{
-		
-	}
-	public function RecupNbFormInscrit()
-	{
-		
-	}
-	public function InscrireLeStagiaire()
-	{
-		
-	}*/
+
 	public static function recuperationID($NomID)
 	{
 		$requete = 'SELECT ID_UTIL from stagiaire where login = "'.$NomID.'"';
 		$res = PdoForma::$monPdo->query($requete);
-		$ID = $res->fetch();
-		
-		return $ID;
+		$ID = $res->fetch();			
+		return $ID[0];
 	}
 	public static function connexion($utilisateur,$motdepass)
 	{	

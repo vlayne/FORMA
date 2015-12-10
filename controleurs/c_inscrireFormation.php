@@ -5,4 +5,6 @@ $NumSession = $_REQUEST['session'];
 var_dump($Numformation);
 var_dump($Numdomaine);
 var_dump($NumSession);
+var_dump($_SESSION['idUtil']);
+
 ?>
