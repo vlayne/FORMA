@@ -135,7 +135,7 @@ class PdoForma
 	public static function inscription($login,$mdp,$numICOM,$nom,$statut,$prenom,$email,$date,$adresse,$telephone,$fonction)
 	{
 		$inscrit = false ;
-		$RequeteInscrit= 'INSERT INTO stagiaire VALUES ('.$numICOM.',"'.$login.'","'.$prenom.'","'.$statut.'","'.$fonction.'","b","'.$mdp.'","'.$email.'","'.$date.'","'.$adresse.'",'.$telephone.',"'.$nom.'")';
+		$RequeteInscrit= 'INSERT INTO stagiaire VALUES (default,'.$numICOM.',"'.$login.'","'.$prenom.'","'.$statut.'","'.$fonction.'","b","'.$mdp.'","'.$email.'","'.$date.'","'.$adresse.'",'.$telephone.',"'.$nom.'")';
 		$connexion = PdoForma::$monPdo->exec($RequeteInscrit);
 		if($RequeteInscrit)
 		{
@@ -165,6 +165,13 @@ class PdoForma
 	{
 		
 	}
+
+	//public static function InscrirePourFormation($IdUtil,$NumForm,$IdDomaine,$idSession)
+	//{
+	//	$requete = 'INSERT into inscire VALUES('$IdUtil','$NumForm','$IdDomaine','$idSession',0)';
+	//	$res = PdoForma::$monPdo->exec($requete);
+
+	//}
 
 	public static function recuperationID($NomID)
 	{
