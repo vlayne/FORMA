@@ -15,22 +15,34 @@
 		{			
 			echo "<tr>";
 			for($j = 3; $j < 10; $j++)
-			{
-				echo "<td>".$formation[$i][$j]. "</td>";
-				$dom = $formation[$i][0];
-				$forma = $formation[$i][1];
-				$session = $formation[$i][2];
-			}
-			if(isset($_SESSION['connecter']))
 			{	
-				?>
-				<td><form method='post' action =index.php?uc=inscrireFormation&domaine=<?php echo $dom ?>&formation=<?php echo $forma ?>&session=<?php echo $session ?>>
-				 <input type='submit' value="s'inscrire" ></form></td>				
-				<?php
+				//S'il n'y a plus de places
+				if(!$formation[$i][5] == 0 && $formation[$i][7] >= date("Y-m-d"))
+				{
+					echo "<td>".$formation[$i][$j]. "</td>";
+					$dom = $formation[$i][0];
+					$forma = $formation[$i][1];
+					$session = $formation[$i][2];
+					
+				}
+								
 			}
+			//S'il n'y a plus de places
+			if(!$formation[$i][5] == 0 && $formation[$i][7] >= date("Y-m-d"))
+			{
+				if(isset($_SESSION['connecter']))
+				{	
+					?>
+					<td><form method='post' action =index.php?uc=inscrireFormation&domaine=<?php echo $dom ?>&formation=<?php echo $forma ?>&session=<?php echo $session ?>>
+					 <input type='submit' value="s'inscrire" ></form></td>				
+					<?php
+				}
+				
+			}
+		}
 			echo "</tr>";
 			
-		}
+		
 		?>
 		</table>
 <?php
