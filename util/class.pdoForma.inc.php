@@ -81,7 +81,7 @@ class PdoForma
 	public static function InscrirePourFormation($IdUtil,$NumForm,$IdDomaine,$idSession)
 	{	
 		$inscritForma = false ;
-		$requete = 'INSERT into inscire VALUES('.$IdUtil.','.$NumForm.','.$IdDomaine.','.$idSession.',0)';
+		$requete = 'INSERT into inscrire VALUES('.$IdUtil.','.$NumForm.','.$IdDomaine.','.$idSession.',0)';
 		$res = PdoForma::$monPdo->exec($requete);
 		if($requete)
 		{
