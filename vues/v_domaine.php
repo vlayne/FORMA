@@ -1,3 +1,4 @@
+<div id="domaine">
 <center>Voici la liste des formations proposés : </center>
 </br>
 <table>
@@ -14,3 +15,4 @@
 		}
 	?>
 </table>
+</div>
