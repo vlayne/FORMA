@@ -12,11 +12,20 @@
 		</tr>
 		<?php		
 		for($i = 0; $i < count($formation); $i++)
-		{
+		{			
 			echo "<tr>";
 			for($j = 0; $j < 7; $j++)
 			{
 				echo "<td>".$formation[$i][$j]. "</td>";
+			}
+			if(isset($_SESSION['connecter']))
+			{	
+				?>
+				<td><form method ='post' action=index.php?uc=inscrireFormation&formation=<?php echo $formation ?>>
+					<input type='submit' value="s'inscrire" />
+				</form>
+				</td>
+				<?php
 			}
 			echo "</tr>";
 			

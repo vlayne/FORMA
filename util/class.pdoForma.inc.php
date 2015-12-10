@@ -204,6 +204,13 @@ class PdoForma
 		$lesLignes = $res->fetchAll();
 		return $lesLignes;
 	}
+
+	public function getNbPlacesRestantes()
+	{
+		
+	}
+
+
 	public static function grade($utilisateur)
 	{
 		$requeteGrade = 'SELECT grade from stagiaire where login="'.$utilisateur.'"';

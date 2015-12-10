@@ -11,6 +11,7 @@
 	if(!isset($_SESSION['connecter'])&&!isset($_SESSION['admin']))
 	{
 	?>
+	<li><a href="index.php?uc=inscription"> Inscription</a></li>
 	<li><a href="index.php?uc=connexion">Connexion </a></li>
 	<?php
 	}
@@ -19,8 +20,7 @@
 	<?php 
 	if(isset($_SESSION['connecter']))
 	{
-	?>
-	<li><a href="index.php?uc=inscription"> InscriptionFormation </a></li>
+	?>	
 	<li><a href="index.php?uc=deconnecter"> Deconnecter </a></li>
 	
 	<?php

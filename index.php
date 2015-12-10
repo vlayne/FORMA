@@ -26,8 +26,10 @@ switch($uc)
 	    { include("controleurs/c_administrer.php");break;  }
 	case 'deconnecter' :
 		{ include("controleurs/c_deco.php");break;}
-	case 'inscriptionF' :
-		{ include("controleurs/c_inscriptionF.php");break; }
+	//case 'inscriptionF' :
+		//{ include("controleurs/c_inscriptionF.php");break; }
+	case 'inscrireFormation' :
+		{ include("controleurs/c_inscrireFormation.php");break;}
 }
-// include("vues/v_pied.php") ;
+//include("vues/v_pied.php") ;
 ?>
