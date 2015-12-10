@@ -10,8 +10,6 @@
 <input type='text' name='mdp'/>
 <p>Confirmation du Mot de passe</p>
 <input type='text' name='mdpV'/>
-<p>Nom Association</p>
-<input type='text' name='nomA'/>
 <p>Nom</p>
 <input type='text' name='nom'/>
 <p>Prenom</p>
@@ -31,8 +29,8 @@
 <p>Statut</p>
 <input type='text' name='statut'/>
 
-<label> Payement </label>
-
+<!--
+<form method='post' action="">
 <p> 
 Si vous cochez "ulterieur" , vous devrez envoyer un chèque auprès 
 d'Uniformation afin de valider votre inscription.
@@ -41,10 +39,15 @@ d'Uniformation afin de valider votre inscription.
 immediat <br/>
 <input type='radio' name='payement' value='oui' />
 <br/>ulterieur 
-<input type='radio' name='payement' value='non' />
+<input type='radio' name='payement' value='non' checked="checked" />
 <br/>
 <input type='submit' value='Valider'/>
 <input type='button' value='Annuler'/>
+</form>
+-->
+<br/>
+<input type='submit' value='Valider'/>
+<input type='button' value='Annuler'/> 
 </form>
 
 </body>

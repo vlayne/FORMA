@@ -132,24 +132,17 @@ class PdoForma
 			$res = PdoForma::$monPdo->exec($req);
 		}
 	}
-	/* 	**
-	*Ajout/Suppression/Modification d'un Produit & connexion
-	*Ajoute , modifie , supprime un produit en fonction des paramètres.
-	*Initialisation de variables booléens et envoi de la requête à la BD.
-	*la variable est renvoyé suite au résultat de la requête
-	 */
-	public static function inscription($login,$nomAssoc,$mdp,$numICOM,$nom,$statut,$prenom,$email,$date,$adresse,$telephone,$fonction)
+	public static function inscription($login,$mdp,$numICOM,$nom,$statut,$prenom,$email,$date,$adresse,$telephone,$fonction)
 	{
-		var_dump($_SESSION['id']);
 		$inscrit = false ;
-		$RequeteInscrit= 'INSERT INTO stagiaire VALUES ('.$numICOM.','.$login.',"'.$prenom.'","'.$statut.'","'.$fonction.'","b","'.$mdp.'","'.$email.'",'.$date.',"'.$adresse.'",'.$telephone.',"'.$nom.'")';
+		$RequeteInscrit= 'INSERT INTO stagiaire VALUES ('.$numICOM.',"'.$login.'","'.$prenom.'","'.$statut.'","'.$fonction.'","b","'.$mdp.'","'.$email.'","'.$date.'","'.$adresse.'",'.$telephone.',"'.$nom.'")';
 		$connexion = PdoForma::$monPdo->exec($RequeteInscrit);
 		if($RequeteInscrit)
 		{
 			$inscrit=true;
 		}
 		return $inscrit ;
-	}*
+	}
 	public static function VerifNumeroICOM($numICOM)
 	{
 		$ICOM = false ;
@@ -158,10 +151,10 @@ class PdoForma
 		$ConfICOM = $connex->fetch();
 		foreach ($ConfICOM as $key => $value) 
 		{
-			if($numICOM==$key)
+			if($numICOM==$value)
 				$ICOM=true;
 		}
-		return $ICOM;
+		return $ICOM;zdzd
 	}
 	/*public function RecupNombreDePlace()
 	{
