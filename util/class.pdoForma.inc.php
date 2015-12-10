@@ -78,10 +78,7 @@ class PdoForma
 		return $ICOM;
 	}
 
-	public static function AfficheEnAttenteInscrit()
-	{
-		
-	}
+	
 	
 	public static function InscrirePourFormation($IdUtil,$NumForm,$IdDomaine,$idSession)
 	{	
