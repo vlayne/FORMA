@@ -14,16 +14,18 @@
 		for($i = 0; $i < count($formation); $i++)
 		{			
 			echo "<tr>";
-			for($j = 0; $j < 7; $j++)
+			for($j = 3; $j < 10; $j++)
 			{
 				echo "<td>".$formation[$i][$j]. "</td>";
+				$dom = $formation[$i][0];
+				$forma = $formation[$i][1];
+				$session = $formation[$i][2];
 			}
 			if(isset($_SESSION['connecter']))
 			{	
 				?>
-				<td>
-					<input type='submit' value="s'inscrire" href=index.php?uc=inscrireFormation&formation=<?php echo $formation[$i][$j] ?>/>				
-				</td>
+				<td><form method='post' action =index.php?uc=inscrireFormation&domaine=<?php echo $dom ?>&formation=<?php echo $forma ?>&session=<?php echo $session ?>>
+				 <input type='submit' value="s'inscrire" ></form></td>				
 				<?php
 			}
 			echo "</tr>";
