@@ -149,6 +149,19 @@ class PdoForma
 			$inscrit=true;
 		}
 		return $inscrit ;
+	}*
+	public static function VerifNumeroICOM($numICOM)
+	{
+		$ICOM = false ;
+		$RequeteICOM= 'SELECT NUM_ICOM from association';
+		$connex = PdoForma::$monPdo->query($RequeteICOM);
+		$ConfICOM = $connex->fetch();
+		foreach ($ConfICOM as $key => $value) 
+		{
+			if($numICOM==$key)
+				$ICOM=true;
+		}
+		return $ICOM;
 	}
 	/*public function RecupNombreDePlace()
 	{

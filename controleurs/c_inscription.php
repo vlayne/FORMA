@@ -6,6 +6,7 @@ if(isset($_POST['nom']))
 	$login = $_POST['ID'];
 	$nomAssoc = $_POST['nomA'];
 	$mdp = $_POST['mdp'];
+	$confirmdp = $_POST['mdpV'];
 	$numICOM = $_POST['icom'];
 	$nom = $_POST['nom'];
 	$prenom = $_POST['prenom'];
@@ -16,15 +17,31 @@ if(isset($_POST['nom']))
 	$fonction =$_POST['fonction'];
 	$statut = $_POST['statut'];
 	
-	// var_dump($pdo->recuperationID($_SESSION['id']));
-	$stagiaire = $pdo->inscription($login,$nomAssoc,$mdp,$numICOM,$nom,$prenom,$email,$date,$adresse,$telephone,$fonction);
-	if(!$stagiaire)
+	// Tests des valeurs entrées par l'utilisateur
+	$testICOM = $pdo->VerifNumeroICOM($numICOM);
+
+
+
+	if($mdp!=$confirmdp)
 	{
-		echo 'Erreur ! Veuillez remplir tout les champs !';
+		echo'Vos mots de passes ne correspondent pas !';
 	}
 	else
-	{
-	  	echo 'Vous avez bien été inscrit ! Bienvenue '.$nom.' !';
-	}
+		if(!$testICOM)
+		{
+			echo "Ce numéro ICOM n'existe pas !";
+		}
+		else
+		{
+			$stagiaire = $pdo->inscription($login,$nomAssoc,$mdp,$numICOM,$nom,$prenom,$email,$date,$adresse,$telephone,$fonction);
+			if(!$stagiaire)
+			{
+				echo 'Erreur ! Veuillez remplir tout les champs !';
+			}
+			else
+			{
+			  	echo 'Vous avez bien été inscrit ! Bienvenue '.$nom.' !';
+			}
+		}	
 }
 ?>

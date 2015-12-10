@@ -6,9 +6,9 @@
 <form method='post' action="index.php?uc=inscription">
 <p>Identifiant</p>
 <input type='text' name='ID'/>
-<p>Mot de pass</p>
+<p>Mot de passe</p>
 <input type='text' name='mdp'/>
-<p>Confirmation Mot de pass</p>
+<p>Confirmation du Mot de passe</p>
 <input type='text' name='mdpV'/>
 <p>Nom Association</p>
 <input type='text' name='nomA'/>
