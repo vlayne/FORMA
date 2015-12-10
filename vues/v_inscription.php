@@ -1,7 +1,7 @@
 <html>
 
 <head><title>titre</title></head>
-
+<div id="inscriptionSite">
 <body>
 <form method='post' action="index.php?uc=inscription">
 <p>Identifiant</p>
@@ -51,5 +51,5 @@ immediat <br/>
 </form>
 
 </body>
-
+</div>
 </html>
