@@ -52,7 +52,7 @@
 								
 			}
 			//S'il n'y a plus de places
-			if(!$formation[$i][5] == 0 /*&& $formation[$i][7] >= date("Y-m-d") */)
+			if(!$formation[$i][5] == 0 /* && $formation[$i][7] >= date("Y-m-d") */)
 			{
 				if(isset($_SESSION['connecter']))
 				{	
