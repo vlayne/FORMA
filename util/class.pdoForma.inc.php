@@ -78,7 +78,17 @@ class PdoForma
 		return $ICOM;
 	}
 
-	
+		public function AjoutDeFormation($nomF,$cout,$lieu,$nomI,$public,$objectif,$contenu,$dateL)
+	{
+		$Valider = false ;
+		$requete = 'INSERT INTO formation VALUES("'.$nomF.'",'.$cout.',"'.$lieu.'","'.$nomI.'","'.$public.'","'.$objectif.'","'.$contenu.'","'.$dateL.'"") ';
+		$resultat = PdoForma::$monPdo->exec($requete);
+		if($resultat)
+		{
+			$Valider = true;
+		}
+		return $Valider;
+	}
 	
 	public static function InscrirePourFormation($IdUtil,$NumForm,$IdDomaine,$idSession)
 	{	
