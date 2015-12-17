@@ -4,7 +4,6 @@ $session=$_REQUEST['session'];
 $idUtil=$_REQUEST['idUtil'];
 $domaine=$_REQUEST['domaine'];
 $formation=$_REQUEST['formation'];
-
 $EstValider=$pdo->ValiderInscriptionA($session,$idUtil,$domaine,$formation);
 if($EstValider)
 {

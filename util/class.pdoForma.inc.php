@@ -85,9 +85,11 @@ class PdoForma
 		$req = "Select id_util,num_form,id_domaine,id_session,statut from inscrire where id_util = $IdUtil and num_form = $NumForm and id_domaine = $IdDomaine and id_session = $idSession ";
 		$resultat = PdoForma::$monPdo->query($req);
 		$test = $resultat->fetchAll();
-		if($test[0][4] == 1)
+		if($test != null)
 		{
-			$inscritForma = false;
+			
+				$inscritForma = false;
+			
 		}
 		else
 		{	
@@ -169,7 +171,7 @@ class PdoForma
 	// recupération des inscrits aux formations avec leur statut de paiement en cours
  	public static function AfficherInscriptionEnCours()
 	{
-		$req = "select nom,prenom_util,NOM_FORM,inscrire.ID_DOMAINE,inscrire.NUM_FORM,inscrire.ID_SESSION,inscrire.ID_UTIL FROM stagiaire,inscrire,formation where stagiaire.ID_UTIL = inscrire.ID_UTIL and formation.NUM_FORM = inscrire.NUM_FORM and inscrire.statut=0";
+		$req = "select stagiaire.login,prenom_util,NOM_FORM,inscrire.ID_DOMAINE,inscrire.NUM_FORM,inscrire.ID_SESSION,inscrire.ID_UTIL FROM stagiaire,inscrire,formation where stagiaire.ID_UTIL = inscrire.ID_UTIL and formation.NUM_FORM = inscrire.NUM_FORM and inscrire.id_domaine = formation.id_domaine and inscrire.statut=0";
 		$res = PdoForma::$monPdo->query($req);
 		$lesLignes = $res->fetchAll();
 		return $lesLignes;
@@ -178,7 +180,7 @@ class PdoForma
 	public function ValiderInscriptionA($session,$idUtil,$domaine,$formation)
 	{
 		$EstValider= false;
-		$req = "update inscrire set Statut=1 where ID_UTIL=".$idUtil." and NUM_FORM=".$formation." and ID_SESSION=".$session." and ID_DOMAINE=".$domaine."";
+		$req = "update inscrire set Statut=1 where ID_UTIL=".$idUtil." and NUM_FORM=".$session." and ID_DOMAINE=".$domaine." and ID_SESSION=".$formation."";
 		$resultat = PdoForma::$monPdo->exec($req);
 		if($resultat)
 		{
