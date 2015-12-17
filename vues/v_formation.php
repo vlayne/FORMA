@@ -1,23 +1,47 @@
-<center>Voici la liste des formations proposés : </center>
-</br>
-<table border>
-		<tr>
-			<td>Nom de la formation</td>
-			<td>Coût de la formation</td>
-			<td>Nombre de place restante</td>
-			<td>Lieu de la formation</td>
-			<td>Jour de la formation</td>
-			<td>Heure de commencement</td>
-			<td>Heure de fin</td>
-		</tr>
-		<?php		
+
+<div class="container">
+  <h2>Formations proposés</h2>    
+  <?php /*
+    $boole = true;
+	for($i = 0; $i < count($formation); $i++)
+		{
+
+		for($j = 3; $j < 10; $j++)
+			{	
+				//S'il n'y a plus de places
+				if(!(!$formation[$i][5] == 0 && $formation[$i][7] >= date("Y-m-d")))
+				{
+					$boole = false;
+				}
+								
+			}
+		}	
+  */if(count($formation) == 0 ) { 
+  			echo '<h3>Aucune données</h3>';
+  		} else { ?>                         
+  <div class="table-responsive">          
+  <table id="tableauFormation" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+      <tr>
+        <th>Nom de la formation</th>
+		<th>Coût de la formation</th>
+		<th>Nombre de place restante</th>
+		<th>Lieu de la formation</th>
+		<th>Jour de la formation</th>
+		<th>Heure de commencement</th>
+		<th>Heure de fin</th>
+		<th></th>
+      </tr>
+    </thead>
+    <tbody>
+        <?php		
 		for($i = 0; $i < count($formation); $i++)
 		{			
 			echo "<tr>";
 			for($j = 3; $j < 10; $j++)
 			{	
 				//S'il n'y a plus de places
-				if(!$formation[$i][5] == 0 && $formation[$i][7] >= date("Y-m-d"))
+				if(!$formation[$i][5] == 0 /*&& $formation[$i][7] >= date("Y-m-d") */)
 				{
 					echo "<td>".$formation[$i][$j]. "</td>";
 					$dom = $formation[$i][0];
@@ -28,7 +52,7 @@
 								
 			}
 			//S'il n'y a plus de places
-			if(!$formation[$i][5] == 0 && $formation[$i][7] >= date("Y-m-d"))
+			if(!$formation[$i][5] == 0 /*&& $formation[$i][7] >= date("Y-m-d") */)
 			{
 				if(isset($_SESSION['connecter']))
 				{	
@@ -41,11 +65,14 @@
 			}
 		}
 			echo "</tr>";
-			
-		
 		?>
-		</table>
-<?php
-
-
-?>
+    </tbody>
+  </table>
+  </div>
+</div>
+<?php } ?>
+<script>
+$(document).ready(function() {
+    $('#tableauFormation').DataTable();
+} );
+</script>

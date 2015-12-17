@@ -1,5 +1,8 @@
+<hr>
 
-<div id="pied">
-<!-- Images En pied -->
-
-</div>
+<footer>
+        <p>&copy; 2015 Forma Pradines Martin Nady</p>
+      </footer>
+    </div> <!-- /container -->
+ </body>
+</html>

@@ -30,6 +30,10 @@ switch($uc)
 		//{ include("controleurs/c_inscriptionF.php");break; }
 	case 'inscrireFormation' :
 		{ include("controleurs/c_inscrireFormation.php");break;}
+	case 'GererInscrit' :
+		{ include("controleurs/c_gererInscrit.php"); break;}
+	case 'ValiderFormation':
+		{ include("controleurs/c_ValiderFormation.php"); break;}
 }
-//include("vues/v_pied.php") ;
+include("vues/v_pied.php") ;
 ?>

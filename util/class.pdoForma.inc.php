@@ -77,12 +77,14 @@ class PdoForma
 		}
 		return $ICOM;
 	}
+
+	
 	
 	public static function InscrirePourFormation($IdUtil,$NumForm,$IdDomaine,$idSession)
 	{	
 		$inscritForma = false ;
 		$requete = 'INSERT into inscrire VALUES('.$IdUtil.','.$NumForm.','.$IdDomaine.','.$idSession.',0)';
-		$res = PdoForma::$monPdo->exec($requete);
+		$res = PdoForma::$monPdo->exec($requete); //si l'utilisateur est déja inscrit or try catch("L'utilisateur est déja inscrit");
 		if($requete)
 		{
 			$inscritForma=true;
@@ -143,5 +145,36 @@ class PdoForma
 		
 		return $grade;
 	}
+
+	// recupération de tous les inscrits aux formations avec leur statut de paiement
+	public static function AfficherInscription()
+	{
+		$req = "select nom,prenom_util,statut FROM stagiaire,inscrire where stagiaire.ID_UTIL = inscrire.ID_UTIL";
+		$res = PdoForma::$monPdo->query($req);
+		$lesLignes = $res->fetchAll();
+		return $lesLignes;
+	}
+
+	// recupération des inscrits aux formations avec leur statut de paiement en cours
+ 	public static function AfficherInscriptionEnCours()
+	{
+		$req = "select nom,prenom_util,NOM_FORM,inscrire.ID_DOMAINE,inscrire.NUM_FORM,inscrire.ID_SESSION,inscrire.ID_UTIL FROM stagiaire,inscrire,formation where stagiaire.ID_UTIL = inscrire.ID_UTIL and formation.NUM_FORM = inscrire.NUM_FORM and inscrire.statut=0";
+		$res = PdoForma::$monPdo->query($req);
+		$lesLignes = $res->fetchAll();
+		return $lesLignes;
+	}
+	//Modifie le statut de l'inscription
+	public function ValiderInscriptionA($session,$idUtil,$domaine,$formation)
+	{
+		$EstValider= false;
+		$req = "update inscrire set Statut=1 where ID_UTIL=".$idUtil." and NUM_FORM=".$formation." and ID_SESSION=".$session." and ID_DOMAINE=".$domaine."";
+		$resultat = PdoForma::$monPdo->exec($req);
+		if($resultat)
+		{
+			$EstValider= true;
+		}
+		return $EstValider;
+	}
+
 }
 ?>
