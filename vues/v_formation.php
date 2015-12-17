@@ -1,7 +1,7 @@
 
 <div class="container">
   <h2>Formations proposés</h2>    
-  <?php /*
+  <?php
     $boole = true;
 	for($i = 0; $i < count($formation); $i++)
 		{
@@ -16,7 +16,7 @@
 								
 			}
 		}	
-  */if(count($formation) == 0 ) { 
+  if(count($formation) == 0 ) { 
   			echo '<h3>Aucune données</h3>';
   		} else { ?>                         
   <div class="table-responsive">          
@@ -41,7 +41,7 @@
 			for($j = 3; $j < 10; $j++)
 			{	
 				//S'il n'y a plus de places
-				if(!$formation[$i][5] == 0 /*&& $formation[$i][7] >= date("Y-m-d") */)
+				if(!$formation[$i][5] == 0 && $formation[$i][7] >= date("Y-m-d") )
 				{
 					echo "<td>".$formation[$i][$j]. "</td>";
 					$dom = $formation[$i][0];
@@ -52,7 +52,7 @@
 								
 			}
 			//S'il n'y a plus de places
-			if(!$formation[$i][5] == 0 /* && $formation[$i][7] >= date("Y-m-d") */)
+			if(!$formation[$i][5] == 0  && $formation[$i][7] >= date("Y-m-d") )
 			{
 				if(isset($_SESSION['connecter']))
 				{	

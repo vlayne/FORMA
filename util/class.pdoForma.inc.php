@@ -82,12 +82,23 @@ class PdoForma
 	
 	public static function InscrirePourFormation($IdUtil,$NumForm,$IdDomaine,$idSession)
 	{	
-		$inscritForma = false ;
-		$requete = 'INSERT into inscrire VALUES('.$IdUtil.','.$NumForm.','.$IdDomaine.','.$idSession.',0)';
-		$res = PdoForma::$monPdo->exec($requete); //si l'utilisateur est déja inscrit or try catch("L'utilisateur est déja inscrit");
-		if($requete)
+		$req = "Select id_util,num_form,id_domaine,id_session,statut from inscrire where id_util = $IdUtil and num_form = $NumForm and id_domaine = $IdDomaine and id_session = $idSession ";
+		$resultat = PdoForma::$monPdo->query($req);
+		$test = $resultat->fetchAll();
+		if($test[0][4] == 1)
 		{
+			$inscritForma = false;
+		}
+		else
+		{	
+				
+			$requete = 'INSERT into inscrire VALUES('.$IdUtil.','.$NumForm.','.$IdDomaine.','.$idSession.',0)';
+			$res = PdoForma::$monPdo->exec($requete);	
 			$inscritForma=true;
+		}
+			
+		if($inscritForma==true)
+		{			
 			$updateNbPlace = 'Update session set NbPlaceRestant = NbPlaceRestant-1 where ID_Session = '.$idSession.' ';
 			$resultatUpdate = PdoForma::$monPdo->exec($updateNbPlace);
 		}
@@ -121,7 +132,7 @@ class PdoForma
 	{
 		
 		$req = "select s.id_domaine,s.num_form,s.id_session,f.NOM_FORM, f.COUT_FORM, s.NbPlaceRestant, f.LIEU_FORM, s.JOUR_SESSION, s.HEUREDEBUT_SESSIOn, s.HEUREFIN_SESSION from formation as f, session as s
-		where s.NUM_FORM = f.NUM_FORM and f.ID_DOMAINE = $idDom ";			
+		where s.NUM_FORM = f.NUM_FORM and s.ID_domaine = f.id_domaine and f.ID_DOMAINE = $idDom ";			
 		$res = PdoForma::$monPdo->query($req);
 		$lesLignes = $res->fetchAll();		
 		return $lesLignes;
