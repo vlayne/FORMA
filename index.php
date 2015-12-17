@@ -32,8 +32,11 @@ switch($uc)
 		{ include("controleurs/c_inscrireFormation.php");break;}
 	case 'GererInscrit' :
 		{ include("controleurs/c_gererInscrit.php"); break;}
+<<<<<<< HEAD
 	case 'ValiderFormation':
 		{ include("controleurs/c_ValiderFormation.php"); break;}
+=======
+>>>>>>> origin/master
 }
 include("vues/v_pied.php") ;
 ?>
