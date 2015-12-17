@@ -1,21 +1,25 @@
 <?php
 include("vues/v_ajoutFormation.php");
-$nomF = $POST['nomF'];
-$cout =$POST['coutF'];
-$lieu = $POST['lieuF'];
-$nomI =$POST['nomI'];
-$public =$POST['public'];
-$objectif =$POST['obj'];
-$contenu =$POST['cont'];
-$dateL = $POST['dateL'];
 
-$AjoutFormation = $pdo->AjoutDeFormation($nomF,$cout,$lieu,$nomI,$public,$objectif,$contenu,$dateL);
-if($AjoutFormation)
+if(isset ($nomF))
 {
-	echo "Votre Formation à été ajoutée";
-}
-else
-{
-	echo "Veuillez remplir tout les champs";
+	$nomF = $POST['nomF'];
+	$cout =$POST['coutF'];
+	$lieu = $POST['lieuF'];
+	$nomI =$POST['nomI'];
+	$public =$POST['public'];
+	$objectif =$POST['obj'];
+	$contenu =$POST['cont'];
+	$dateL = $POST['dateL'];
+
+	$AjoutFormation = $pdo->AjoutDeFormation($nomF,$cout,$lieu,$nomI,$public,$objectif,$contenu,$dateL);
+	if($AjoutFormation)
+	{
+		echo "Votre Formation à été ajoutée";
+	}
+	else
+	{
+		echo "Veuillez remplir tout les champs";
+	}
 }
 ?>
